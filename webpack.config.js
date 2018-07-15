@@ -1,31 +1,33 @@
-var path = require('path');
+const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
+
+const isProd = process.env.NODE_ENV === "production";
 
 module.exports = {
-  entry: {
-    'example/compiled/index': './example/src/index',
-    'example/compiled/responsive_example': './example/src/responsive_example',
-  },
-
+  entry: path.join(__dirname, "example/src/index"),
   output: {
-    path: '.',
-    filename: '[name].js',
-    publicPath: '/example/compiled/',
+    path: path.join(__dirname, "example/dist"),
+    filename: "bundle.[hash].js"
   },
-
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.js$/,
-        exclude: /node_modules/,
-        loader: 'babel',
-      },
-    ],
+        use: "babel-loader",
+        exclude: /node_modules/
+      }
+    ]
   },
-
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: path.join(__dirname, "example/src/index.html")
+    }),
+    new BundleAnalyzerPlugin({
+      analyzerMode: isProd ? "static" : "disabled"
+    })
+  ],
   devServer: {
-    contentBase: './example',
-    host: 'localhost',
-    inline: true,
-    info: false,
-  },
+    contentBase: path.join(__dirname, "example/dist")
+  }
 };
