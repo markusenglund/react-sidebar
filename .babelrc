@@ -2,6 +2,7 @@
   "presets": [["@babel/env", { "loose": true }], "@babel/react"],
   "plugins": [
     ["@babel/plugin-transform-runtime", { "useBuiltIns": true }],
-    "@babel/plugin-proposal-object-rest-spread"
+    "@babel/plugin-proposal-object-rest-spread",
+    ["transform-react-remove-prop-types", { "mode": "unsafe-wrap" }]
   ]
 }
