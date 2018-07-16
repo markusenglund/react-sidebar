@@ -1,4 +1,5 @@
-.DS_Store
+dist
 node_modules
-example/compiled
+.DS_Store
 npm-debug.log
+report.html
