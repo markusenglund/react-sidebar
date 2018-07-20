@@ -1,8 +1,16 @@
 {
-  "presets": [["@babel/env", { "loose": true }], "@babel/react"],
+  "presets": [
+    ["@babel/env", { "loose": true, "modules": false }],
+    "@babel/react"
+  ],
   "plugins": [
     ["@babel/plugin-transform-runtime", { "useBuiltIns": true }],
     "@babel/plugin-proposal-object-rest-spread",
     ["transform-react-remove-prop-types", { "mode": "unsafe-wrap" }]
-  ]
+  ],
+  "env": {
+    "cjs": {
+      "presets": [["@babel/env", { "loose": true }], "@babel/react"]
+    }
+  }
 }

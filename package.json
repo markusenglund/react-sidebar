@@ -3,12 +3,14 @@
   "version": "2.3.2",
   "author": "Paulus Schoutsen <Paulus@PaulusSchoutsen.nl>",
   "description": "A sidebar component for React.",
-  "main": "dist/index.js",
-  "jsnest:main": "src/index.js",
+  "main": "dist/react-sidebar.js",
+  "module": "dist/react-sidebar.esm.js",
   "scripts": {
     "example:dev": "webpack-dev-server --mode development",
     "example:prod": "NODE_ENV=production webpack --mode production",
-    "build": "babel src --out-dir dist",
+    "build": "npm run build:cjs && npm run build:esm",
+    "build:cjs": "BABEL_ENV=cjs babel src --out-file dist/react-sidebar.js",
+    "build:esm": "babel src --out-file dist/react-sidebar.esm.js",
     "dev": "webpack-dev-server",
     "lint": "eslint src example/src"
   },
